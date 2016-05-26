@@ -1,0 +1,278 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 08, 2016 at 10:19 AM
+-- Server version: 5.5.49-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `khamsat`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `categories_category_unique` (`category`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `category`, `created_at`, `updated_at`) VALUES
+(2, 'Politices', '2016-04-04 22:00:00', '2016-04-20 22:00:00'),
+(3, 'Woman', '2016-04-20 22:00:00', NULL),
+(4, 'Health', '2016-05-07 02:26:00', '2016-05-07 02:26:00'),
+(6, 'Science', '2016-05-07 02:26:54', '2016-05-07 02:26:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2014_10_12_100000_create_password_resets_table', 1),
+('2016_04_27_211626_create_users_table', 1),
+('2016_04_27_223046_create_users_table', 2),
+('2016_04_27_223159_create_categories_table', 3),
+('2016_04_27_224255_create_users_table', 4),
+('2016_04_27_224533_create_tags_table', 5),
+('2016_04_27_224608_create_posts_table', 6),
+('2016_04_27_224728_create_post_tags_table', 7),
+('2016_05_03_103617_create_post_tags_table', 8),
+('2016_05_04_183929_create_tags_table', 9),
+('2016_05_04_191741_create_tags_table', 10),
+('2016_05_04_191717_create_post_tag_table', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('ahmed.salama1679@gmail.com', '93d7b3fc39e3bc12a772ff1349ada713c6600a0b00633325c52a8474a53613d1', '2016-05-05 14:00:27'),
+('ahmed.salama16@gmail.com', 'ecb3e588a1fd250a4a5ec359eacb683a447f2d8dde8a78e00237b3994feb1be9', '2016-05-05 14:07:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(600) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
+  `posted_date` datetime NOT NULL,
+  `views_num` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(10) unsigned NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  `is_published` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `posts_title_unique` (`title`),
+  KEY `posts_user_id_foreign` (`user_id`),
+  KEY `posts_category_id_foreign` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=98 ;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `description`, `image`, `content`, `posted_date`, `views_num`, `user_id`, `category_id`, `is_published`, `created_at`, `updated_at`) VALUES
+(19, 'this is post 7', 'this is post 5 description', '/post_pictures/this is post 7.jpg', 'this is post 4 this is post 4 this is post 4 this is post 4 this is post 5 ', '2016-01-01 01:00:00', 8, 5, 3, 1, '2016-05-05 19:30:38', '2016-05-06 23:48:54'),
+(20, 'this is post 8', 'this is post 4 decription', '/post_pictures/this is post 8.jpg', 'this is post 3 this is post 3 this is post 3 this is post 3 t', '2016-01-01 01:00:00', 18, 5, 3, 1, '2016-05-05 16:18:59', '2016-05-06 23:46:41'),
+(90, 'this is second post title has updated tags 22222', 'this is first post of form 2 description', '/post_pictures/this is second post title has updated tags 22222.jpg', 'hi there is content hi there is content hi there is contenthi there is contenthi there is contenthi there is contenthi there is contenthi there is contenthi there is contenthi there is content', '2017-03-02 01:00:00', 15, 5, 3, 1, '2016-05-05 09:51:49', '2016-05-07 16:12:08'),
+(93, 'this is new post by user 3', 'post description by user 3', '/post_pictures/this is new post by user 3.jpg', 'this is post content', '2016-02-01 01:00:00', 12, 5, 3, 1, '2016-05-05 13:35:16', '2016-05-06 23:27:22'),
+(95, 'this is second post title has updated tags 3', 'this is first post of form 2 description', '/post_pictures/this is second post title has updated tags 3.jpg', 'this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text ', '2016-02-02 01:00:00', 1, 5, 3, 1, '2016-05-05 15:51:03', '2016-05-06 23:27:21'),
+(96, 'this is post 95', 'this is post 95 description', '/post_pictures/this is post 95.jpg', 'this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 this is post 95 ', '2016-02-01 01:00:00', 2, 5, 3, 1, '2016-05-05 15:53:35', '2016-05-07 16:11:30'),
+(97, 'this is post with watermark', 'this is first post of form 2 description', '/post_pictures/this is post with watermark.jpg', 'this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is text this is te', '2016-02-01 01:00:00', 34, 5, 3, 1, '2016-05-05 16:11:30', '2016-05-07 16:13:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_tag`
+--
+
+CREATE TABLE IF NOT EXISTS `post_tag` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_tag_post_id_foreign` (`post_id`),
+  KEY `post_tag_tag_id_foreign` (`tag_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=92 ;
+
+--
+-- Dumping data for table `post_tag`
+--
+
+INSERT INTO `post_tag` (`id`, `post_id`, `tag_id`, `created_at`, `updated_at`) VALUES
+(55, 90, 1, '2016-05-05 09:51:49', NULL),
+(56, 90, 2, '2016-05-05 09:51:49', NULL),
+(57, 90, 11, '2016-05-05 09:51:49', NULL),
+(58, 90, 12, '2016-05-05 09:51:49', NULL),
+(66, 93, 1, '2016-05-05 13:35:16', NULL),
+(67, 93, 2, '2016-05-05 13:35:16', NULL),
+(68, 93, 14, '2016-05-05 13:35:16', NULL),
+(71, 95, 15, '2016-05-05 15:51:03', NULL),
+(72, 95, 16, '2016-05-05 15:51:03', NULL),
+(73, 96, 17, '2016-05-05 15:53:35', NULL),
+(74, 96, 18, '2016-05-05 15:53:35', NULL),
+(75, 97, 1, '2016-05-05 16:05:10', NULL),
+(76, 97, 2, '2016-05-05 16:05:10', NULL),
+(77, 97, 11, '2016-05-05 16:05:10', NULL),
+(78, 97, 12, '2016-05-05 16:05:10', NULL),
+(79, 97, 1, '2016-05-05 16:06:49', NULL),
+(80, 97, 2, '2016-05-05 16:06:49', NULL),
+(81, 97, 11, '2016-05-05 16:06:49', NULL),
+(82, 97, 12, '2016-05-05 16:06:49', NULL),
+(83, 97, 1, '2016-05-05 16:08:11', NULL),
+(84, 97, 2, '2016-05-05 16:08:11', NULL),
+(85, 97, 11, '2016-05-05 16:08:11', NULL),
+(86, 97, 12, '2016-05-05 16:08:11', NULL),
+(87, 97, 17, '2016-05-05 16:09:14', NULL),
+(88, 20, 17, '2016-05-05 16:13:46', NULL),
+(89, 20, 18, '2016-05-05 16:13:46', NULL),
+(90, 19, 17, '2016-05-05 19:30:39', NULL),
+(91, 19, 18, '2016-05-05 19:30:39', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tag` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `tag`, `created_at`, `updated_at`) VALUES
+(1, 'facebook', '2016-05-03 22:00:00', '2016-05-03 22:00:00'),
+(2, 'twitter', '2016-05-03 22:00:00', '2016-05-03 22:00:00'),
+(3, 'skypeee', '2016-05-03 22:00:00', '2016-05-03 22:00:00'),
+(10, 'tagfacebook', '2016-05-04 22:47:15', '2016-05-04 22:47:15'),
+(11, 'whatsapp', '2016-05-04 22:47:16', '2016-05-04 22:47:16'),
+(12, 'appsaver', '2016-05-04 22:47:16', '2016-05-04 22:47:16'),
+(13, 'newTag', '2016-05-04 22:49:00', '2016-05-04 22:49:00'),
+(14, 'instagram', '2016-05-05 13:34:41', '2016-05-05 13:34:41'),
+(15, 'first', '2016-05-05 15:44:29', '2016-05-05 15:44:29'),
+(16, 'second', '2016-05-05 15:44:29', '2016-05-05 15:44:29'),
+(17, 'tag1', '2016-05-05 15:53:35', '2016-05-05 15:53:35'),
+(18, 'tag2', '2016-05-05 15:53:35', '2016-05-05 15:53:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(20) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `section` int(10) unsigned DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_section_foreign` (`section`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `image`, `is_admin`, `is_active`, `section`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'salama', 'ahmed.salama1679@gmail.com', '$2y$10$y923yRiwQCUO4N3JBeKgFehrUFlojSs/Q1wD6eB/q7gsfjwUAJBQ2', '/users_pictures/co.png', 0, 1, 2, 'AmOQDKc7DREHBqvuFI9K3rzDWVNtUKl5IW2gydKuzr1dcBgj2E0wmFxdFQMY', '2016-05-01 09:40:07', '2016-05-07 01:22:53'),
+(4, 'admin', 'admin@mail.com', '$2y$10$KrmWURLEV3ORGwol7qHUt.gxG9ALcMsEFZFK95qkxbxPRp0J85fSm', '/users_pictures/co.png', 0, 0, 2, 'WnPCcfWgygdN2pSqaWHwbGaj2J4ZPzdPsNf8Nr4bW3QvoSED0mjKCySlwUai', '2016-05-02 18:09:33', '2016-05-07 16:02:22'),
+(5, 'user3', 'ahmed.salama16@gmail.com', '$2y$10$EBZL2vP9JLe8DI.OMQ7sXusCR9Ow4yHXICuIilMsYWZ3wqtqVHbGm', '/users_pictures/co.png', 1, 1, 3, 'tTIgWSwwaQNr3fGvEs94OgW74o9pbu4AilcLPb1NLME6q5X8mFTbgGhpXAS7', '2016-05-02 18:15:37', '2016-05-07 16:12:59');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `post_tag`
+--
+ALTER TABLE `post_tag`
+  ADD CONSTRAINT `post_tag_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `post_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_section_foreign` FOREIGN KEY (`section`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

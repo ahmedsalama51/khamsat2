@@ -1,0 +1,41 @@
+1) register:
+	user can register with his email which is unique ,  and his name ,
+	 password and image isn't requierd , if he dosn't choose image we will set a default on;
+2) login:
+	user will login with his email and password , 
+	if he forget password we will redirect him to apage to insert his mail and we will send him password;
+3) navigate:
+	any person could review our home page and our posts 
+	but without abailty of add new post
+4) registered user:
+	will be able to view all post 
+	add new post only to his category sector 
+	edit or delete his post within 1 hour only
+	active/deactive his account
+5) admin:
+	will be able to edit or delete any post
+	add ability if is_published to posts or stop it
+	 active user or deactive him to stop him of login
+	specify a user sector or he will not be able to add posts   
+7) post:
+	user can add title which is unique ;
+	description to be apear on post advs , with title and image;
+	image which we resize it and add our watermark on it befor upload;
+	tags which is filterd by (#) sigen and tags name are unique
+		 but manyTomany relation between post & tag give abiltity to use same tag on any post
+8) tags and category are filter search to user
+
+
+
+
+
+MySQL 5.5 database added.  Please make note of these credentials:
+
+       Root User: adminERHxgXf
+   Root Password: py74D9bNttpP
+   Database Name: php
+
+Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
+
+You can manage your new MySQL database by also embedding phpmyadmin.
+The phpmyadmin username and password will be the same as the MySQL credentials above.
