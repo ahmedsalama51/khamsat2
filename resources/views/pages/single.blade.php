@@ -124,7 +124,7 @@
 						@endif
 						<!-- //End-tag-weight---->
 					</div>
-					@if(Auth::user()->is_active == 1)
+					@if(Auth::user() && Auth::user()->is_active == 1)
 					<div class="comment col-md-8">
 						<h2>Leave a comment</h2>
 						<!-- <form action="/comments/add/{{$post->id}}" method="POST">
